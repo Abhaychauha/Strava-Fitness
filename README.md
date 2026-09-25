@@ -1,18 +1,18 @@
-# Bellabeat Fitness Data Analytics — Streamlit Dashboard
+# Strava Fitness Data Analytics — Streamlit Dashboard
 
-A full case-study deliverable for the Bellabeat marketing-analytics brief: clean the Fitbit
+A full case-study deliverable for the Strava Fitness marketing-analytics brief: clean the Fitbit
 tracker data into a queryable SQLite database, then explore it through an interactive
 Streamlit dashboard with a built-in SQL analysis workbench.
 
 ## What's inside
 
 ```
-bellabeat_dashboard/
-├── build_database.py   # Reads the raw CSVs and builds data/bellabeat.db (run once)
+strava_fitness_dashboard/
+├── build_database.py   # Reads the raw CSVs and builds data/strava_fitness.db (run once)
 ├── app.py               # The Streamlit dashboard (8 pages, incl. SQL workbench)
 ├── requirements.txt
 ├── data/
-│   └── bellabeat.db     # Pre-built SQLite database (already generated for you)
+│   └── strava_fitness.db     # Pre-built SQLite database (already generated for you)
 └── README.md
 ```
 
@@ -23,7 +23,7 @@ bellabeat_dashboard/
    ```bash
    pip install -r requirements.txt
    ```
-3. `data/bellabeat.db` is already built and included. If you ever want to rebuild it from the
+3. `data/strava_fitness.db` is already built and included. If you ever want to rebuild it from the
    raw CSVs (e.g. after editing `build_database.py`), point `RAW` in that file at your CSV
    folder and run:
    ```bash
@@ -44,7 +44,7 @@ bellabeat_dashboard/
   second-level readings for performance).
 - **Weight** — weight/BMI trends for the small subset of users who logged weight.
 - **SQL Analysis** — a live SQL workbench: browse the schema, pick an example query or write
-  your own `SELECT`, run it against `bellabeat.db`, view/download results, and auto-chart them.
+  your own `SELECT`, run it against `strava_fitness.db`, view/download results, and auto-chart them.
 - **Insights & Recommendations** — the write-up: key findings and marketing recommendations.
 - **About the Data** — data source, licensing, known limitations, and full documentation of
   every cleaning/aggregation decision made in `build_database.py`.

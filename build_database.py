@@ -1,10 +1,10 @@
 """
 build_database.py
 ------------------
-Bellabeat / Strava Fitness Data Analytics Case Study
+Strava Fitness Data Analytics Case Study
 
 Reads the raw Fitbit CSV exports and builds a single clean SQLite database
-(bellabeat.db) that the Streamlit app queries with SQL.
+(strava_fitness.db) that the Streamlit app queries with SQL.
 
 Design decisions (documented for the case-study write-up):
 - dailyActivity_merged.csv already contains all columns found in
@@ -31,7 +31,7 @@ import pandas as pd
 from pathlib import Path
 
 RAW = Path("/mnt/user-data/uploads")
-DB_PATH = Path(__file__).parent / "data" / "bellabeat.db"
+DB_PATH = Path(__file__).parent / "data" / "strava_fitness.db"
 DB_PATH.parent.mkdir(exist_ok=True)
 
 WEEKDAY_ORDER = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]

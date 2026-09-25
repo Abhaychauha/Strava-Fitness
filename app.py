@@ -1,7 +1,7 @@
 """
-Bellabeat Fitness Data Analytics Dashboard
+Strava Fitness Data Analytics Dashboard
 ===========================================
-Streamlit app covering the Bellabeat / Fitbit case study:
+Streamlit app covering the Strava Fitness / Fitbit case study:
   - Overview KPIs
   - Activity analysis (steps, intensity, calories by weekday/hour)
   - Sleep analysis
@@ -21,10 +21,10 @@ import plotly.express as px
 import plotly.graph_objects as go
 import streamlit as st
 
-DB_PATH = Path(__file__).parent / "data" / "bellabeat.db"
+DB_PATH = Path(__file__).parent / "data" / "strava_fitness.db"
 WEEKDAY_ORDER = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
 
-st.set_page_config(page_title="Bellabeat Fitness Analytics", page_icon="🏃", layout="wide")
+st.set_page_config(page_title="Strava Fitness Analytics", page_icon="🏃", layout="wide")
 
 
 # ---------------------------------------------------------------- helpers --
@@ -49,7 +49,7 @@ ACCENT = "#F26430"
 
 
 # ------------------------------------------------------------------ sidebar
-st.sidebar.title("🏃 Bellabeat Analytics")
+st.sidebar.title("🏃 Strava Fitness Analytics")
 st.sidebar.caption("Fitbit smart-device usage study")
 page = st.sidebar.radio(
     "Navigate",
@@ -68,7 +68,7 @@ if selected_users:
 
 # ===================================================================== 1 ==
 if page == "Overview":
-    st.title("Bellabeat Fitness Data — Overview")
+    st.title("Strava Fitness Data — Overview")
     st.caption("Fitbit fitness-tracker data from 30+ users, April–May 2016. Source: Mobius / Kaggle, CC0.")
 
     kpi_sql = f"""
@@ -277,7 +277,7 @@ elif page == "Weight":
 # ===================================================================== 6 ==
 elif page == "SQL Analysis":
     st.title("🗄️ SQL Analysis Workbench")
-    st.caption("Query the cleaned SQLite database (`data/bellabeat.db`) directly. Read-only SELECT statements only.")
+    st.caption("Query the cleaned SQLite database (`data/strava_fitness.db`) directly. Read-only SELECT statements only.")
 
     with st.expander("📋 Database schema", expanded=False):
         schema = run_query("SELECT name, type FROM sqlite_master WHERE type IN ('table','view') ORDER BY type, name")
@@ -334,11 +334,11 @@ elif page == "Insights & Recommendations":
 6. **Engagement, not raw activity, is the real opportunity.** The data suggests the biggest gap isn't awareness of activity — it's *consistency* of tracker wear and follow-through on light activity turning into moderate activity.
     """)
 
-    st.subheader("Recommendations for Bellabeat marketing strategy")
+    st.subheader("Recommendations for Strava Fitness marketing strategy")
     st.markdown("""
 1. **Position the product around consistency, not intensity.** Since most users already move lightly throughout the day, market smart nudges ("stand up," "you're 20 min from your goal") that convert light activity into moderate activity, rather than competing on intensity-tracking accuracy.
-2. **Build a "wear-time" or gentle re-engagement nudge.** High full-day-sedentary counts likely reflect the device not being worn, not inactivity. A Bellabeat wellness feature that reminds users to wear the device (framed positively, e.g. a streak/habit feature) could close this gap and improve data quality simultaneously.
-3. **Lead with sleep & recovery content.** Sleep is the most improvable, most under-tracked metric — Bellabeat's positioning as a *wellness* (not just fitness) brand is well suited to sleep-coaching content, wind-down reminders, and weekly sleep-consistency scores.
+2. **Build a "wear-time" or gentle re-engagement nudge.** High full-day-sedentary counts likely reflect the device not being worn, not inactivity. A Strava Fitness wellness feature that reminds users to wear the device (framed positively, e.g. a streak/habit feature) could close this gap and improve data quality simultaneously.
+3. **Lead with sleep & recovery content.** Sleep is the most improvable, most under-tracked metric — Strava Fitness's positioning as a *wellness* (not just fitness) brand is well suited to sleep-coaching content, wind-down reminders, and weekly sleep-consistency scores.
 4. **Weekend-specific campaigns.** Saturday shows the highest steps but Sunday the lowest — a "recover well, restart strong" weekend campaign (Saturday activity, Sunday recovery/sleep) aligns messaging to the data's natural weekly rhythm.
 5. **De-emphasize manual weight logging; automate what you can.** Given how rarely weight was logged, marketing/product energy is better spent on passive signals (steps, heart rate, sleep) than manually-entered ones.
     """)
@@ -355,8 +355,8 @@ originally collected via Amazon Mechanical Turk between 03.12.2016 and 05.12.201
 (this export contains 33 unique IDs across the daily-activity table).
 DOI: `10.5281/zenodo.53894`.
 
-**Business task:** How are consumers using their smart devices? Insights are used to inform Bellabeat's
-marketing strategy for a wellness product aimed at women (case-study brief: Bellabeat, Urška Sršen / Sando Mur).
+**Business task:** How are consumers using their smart devices? Insights are used to inform Strava Fitness's
+marketing strategy (based on the classic Bellabeat case-study brief, adapted here for Strava Fitness).
 
 ### Known limitations (documented in the source case study)
 - **No demographic data** — age, sex, height, or profession of participants is unknown, so results can't
@@ -369,7 +369,7 @@ marketing strategy for a wellness product aimed at women (case-study brief: Bell
 - **`full_day_sedentary` flag** — days with ≥1,440 sedentary minutes (a full 24 hrs) most likely indicate the
   tracker wasn't worn, not that the user was awake and motionless all day; these are flagged, not dropped.
 
-### Cleaning steps applied when building `bellabeat.db`
+### Cleaning steps applied when building `strava_fitness.db`
 - Parsed all date/time strings into consistent ISO date formats.
 - Added a `Weekday` column throughout for weekday-pattern analysis.
 - Merged `dailyCalories` / `dailyIntensities` / `dailySteps` are **not** loaded separately since
